@@ -1,2 +1,3 @@
 # lion_hill_c
-fighting
+fighting 
+jy 연습
