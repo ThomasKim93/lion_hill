@@ -127,13 +127,6 @@ img {
         flex: 1;
         height: 100%;
         transition: all 0.8s ease;
-        &:hover {
-          flex: 7;
-          .sec2_desc {
-            opacity: 1;
-            height: 100%;
-          }
-        }
         &:not(:hover) {
           figcaption {
             display: none;
@@ -154,6 +147,9 @@ img {
             font-size: 1rem;
             line-height: 20px;
             opacity: 0;
+          }
+          .sec2_desc.on {
+            opacity: 1;
           }
         }
         img {

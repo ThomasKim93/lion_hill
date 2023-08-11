@@ -23,10 +23,14 @@ acorImages.forEach((acorImg) => {
   const figDesc = acorImg.querySelector(".sec2_desc");
 
   acorImg.addEventListener("mouseover", function () {
-    figDesc.classList.add("on");
+    acorImg.style.flex = "7";
+    setTimeout(function () {
+      figDesc.classList.add("on");
+    }, 700);
   });
 
   acorImg.addEventListener("mouseout", function () {
     figDesc.classList.remove("on");
+    acorImg.style.flex = "1";
   });
 });
