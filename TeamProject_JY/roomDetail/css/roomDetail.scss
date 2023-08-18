@@ -1,0 +1,381 @@
+@import url('../../common/reset.css'); 
+@import url('../../common/font.css');
+
+//아이콘 
+//Keyboard Arrow Down
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0'); 
+//History
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200'); 
+//------------------------------------------------------------
+@mixin flex($x: center, $y: center){
+    display: flex; justify-content: $x; align-items: $y;
+    @content;
+}
+@mixin font($x: inherit, $y: inherit, $z: inherit){
+    font-size: $x;
+    font-weight: $y;
+    color: $z;
+}
+@mixin spaceTxt(){
+    letter-spacing: 200%;
+}
+@mixin text(){
+    word-break: keep-all;
+    word-wrap: break-word;
+}
+
+@mixin English(){
+    font-family: 'Montserrat', 'Times New Roman', Times, serif;
+}
+$mainColor: #23402A;
+$subColor1: #112619;
+$subColor2: #EFF299;
+//------------------------------------------------------------
+
+*{
+    box-sizing: border-box;
+    font-family: 'inter', 'Sans-Serif';
+}
+html{
+    // font-size: 16px;
+}
+body{
+    padding: 0;
+    margin: 0;
+}
+//------------------------------------------------------------
+section{
+    padding: 0 183px;
+    >.content{
+        // max-width: 1075px;
+    }
+}//section
+
+
+main{
+    >.main{
+        position: relative;
+        width: 100%; height: 100vh;
+        overflow: hidden;
+        // @include flex();
+        
+        >ul{
+            // outline: 1px solid red;
+            position: relative; top: 0; left: 0;
+            width: 100%; height: 100%;
+            @include flex(flex-start);
+            >li{
+                // outline: 5px solid green;
+                flex-shrink: 0;
+                position: relative; top: 0; left: 0;
+                width: 100%; height: 100%;
+                >.blackBg{
+                    position: absolute; top: 0; left: 0; z-index: 1;
+                    width: 100%; height: 100%;
+                    background-color: rgba(0, 0, 0, 0.15);
+                }//.blackBg
+                >.bg{
+                    transform: translate();
+                    position: absolute; top: 0; left: 0; z-index: 0;
+                    width: 100%; height: 100%;
+                    overflow: hidden;
+                    >img{
+                        width: 100%; height: 100%;
+                        object-fit: cover; 
+                    }
+                }//.bg
+                
+            }//li
+        }//ul
+
+        >div.BtnsWrapper{
+            // outline: 1px solid red;
+            position: absolute; top: 50%; left: 0; transform: translate(0, -50%);
+            z-index: 3;
+            width: 100%;
+            @include flex(space-between);
+
+            >button{
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+                width: 50px; height: 50px;
+                opacity: 60%;
+                
+                transition: .3s;
+                &:hover{
+                    opacity: 90%;
+                }
+            }//button
+
+            >.leftBtn{
+                background: url('../../common/img/icon_arrowLeft.svg') center center / 100% 100% no-repeat scroll;
+            }//.leftBtn
+
+            >.rightBtn{
+                background: url('../../common/img/icon_arrowRight.svg') center center / 100% 100% no-repeat scroll;
+            }//.rightBtn
+        }//div.BtnsWrapper
+
+        >div.pagination{
+            position: absolute; bottom: 5%; left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            // >ul{
+            //     // outline: 1px solid red;
+                @include flex(space-between);
+                >.swiper-pagination-bullet{
+                    cursor: pointer;
+                    width: 7px; height: 7px;
+                    background-color: white;
+                    border-radius: 50%;
+                    opacity: 60%;
+                    margin: 0 7.5px;
+
+                    transition: .3s;
+                    &.swiper-pagination-bullet-active{
+                        opacity: 100%;
+                    }
+                // }
+            }
+        }//div.pagination
+    }//div.main
+
+    >section.roomDetail_sec1{
+        @include flex(){flex-direction: column};
+        margin-top: 100px; margin-bottom: 138px;
+        >h2{
+            @include font(2.8125rem);
+        }
+
+        >div.reservWrapper{
+            @include flex(){flex-direction: column};
+            margin-top: 26px;
+            margin-bottom: 32px;
+            >p{
+                @include font(1rem, inherit, $mainColor);
+                margin-bottom: 38px;
+            }
+            >.reservBtnsWrapper{
+                // outline: 1px solid red;
+                position: relative; top: 0; left: 0;
+                width: 210px; height: 50px;
+                border: 1px solid $mainColor;
+
+                >.bg{
+                    width: 0%; height: 100%;
+                    background-color: $mainColor;
+                    transition: .3s;
+                }
+
+                >a{ 
+                    position: absolute; top: 0; left: 0;
+                    
+                    @include flex(center, center);
+                    width: 100%; height: 100%;
+                    @include font(1rem, inherit, $mainColor);
+                    text-decoration: none;
+    
+                    transition: .3s;
+    
+                    &:before{
+                        content: 'history';
+                        font-family: 'Material Symbols Outlined';
+                        margin-right: 12px;
+                    };
+                    
+                }
+                &:hover{
+                    >.bg{width: 100%;}
+                    >a{color: white;}
+                }
+            }//reservBtnsWrapper
+        }//div.reservWrapper
+
+        >div.infoTxtWrapper{
+            width: 900px; height: auto;
+            padding: 50px 50px 40px;
+            background-color: #E9ECEA;
+
+            >ul.iconWrapper{
+                width: auto; height: 50px;
+                @include flex(flex-start);
+                margin-bottom: 24px;
+                >li.icon{
+                    margin-right: 22px; height: 100%;
+                    >figure{
+                        // outline: 1px solid green;
+                        height: 100%;
+                        @include flex(space-between){flex-direction: column;};
+                        width: auto;
+                        >p{
+                            width: 24.4px; height: 24.5px;
+                            background: url('../../common/img/icon_wifi.svg') center center / 100% 100% no-repeat scroll;            
+                        }
+                        >figcaption{
+                            width: auto;
+                            @include font(11px, inherit, $mainColor);
+                        }
+
+                    }//li.icon>figcaption
+                    &:nth-of-type(1){
+                        p{
+                            background: url('../../common/img/icon_wifi.svg') center center / 100% 100% no-repeat scroll;
+                        }
+                    }
+                    &:nth-of-type(2){
+                        p{
+                            background: url('../../common/img/icon_car.svg') center center / 100% 100% no-repeat scroll;
+                        }
+                    }
+                    &:nth-of-type(3){
+                        p{
+                            background: url('../../common/img/icon_airConditioner.svg') center center / 100% 100% no-repeat scroll;
+                        }
+                    }
+                    &:nth-of-type(4){
+                        p{
+                            background: url('../../common/img/icon_washingMachine.svg') center center / 100% 100% no-repeat scroll;
+                        }
+                    }
+                    &:nth-of-type(5){
+                        p{
+                            background: url('../../common/img/icon_forkSpoon.svg') center center / 100% 100% no-repeat scroll;
+                        }
+                    }
+                }//li.icon
+            }//ul.iconWrapper
+
+            ul.infoTxtWrapper{
+                li{
+                    margin-bottom: 16.5px;
+                    code{
+                        color: #4D4D4D;
+                    }//code
+                }//li
+            }//ul.infoTxtWrapper
+
+        }//div.infoTxtWrapper
+
+    }//section.roomDetail_sec1
+
+    >section.roomDetail_sec2{
+        position: relative;
+        padding: 187px 183px 260px;
+        background-color: $mainColor;
+        >h2.Logo{
+            position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%);
+            width: 112px; height: 140px;
+            background: url('../../common/img/icon_Logo.svg') center center / 100% 100% no-repeat scroll;
+        }//h2.Logo
+
+        >article.otherRooms{
+            position: relative;
+            @include flex(){flex-direction: column};
+            // outline: 1px solid red;
+            >h3{
+                @include font(35px, bold, $subColor2);
+                margin-bottom: 65px;
+            }
+
+            >div.BtnsWrapper{
+                width: 100%;
+                // outline: 1px solid blueviolet;
+                position: absolute; top: 50%; left: 50%;
+                transform: translate(-50%, -50%);
+                @include flex(space-between);
+                >button{
+                    width: 50px; height: 50px;
+                    background: transparent;
+                    border: none;
+
+                    cursor: pointer;
+                }
+                >button.leftBtn{
+                    background: url('../../common/img/icon_arrowLeft_yellow.svg') center center / 100% 100% no-repeat scroll;
+                }
+                >button.rightBtn{
+                    background: url('../../common/img/icon_arrowRight_yellow.svg') center center / 100% 100% no-repeat scroll;
+                }
+            }//div.BtnsWrapper
+
+            >div.slide{
+                position: relative; z-index: 0;
+                // outline: 1px solid red;
+                margin: 0 50px; //화살표
+                text-align: center;
+                position: relative;
+                width: calc(100% - 100px); height: 335px;
+                overflow: hidden;
+                >ul{
+                    position: relative; z-index: 1;
+                    // outline: 1px solid red;
+                    @include flex(space-between);
+                    height: 270px;
+                    >li{
+                        // width: 300px; 
+                        flex-shrink: 0;
+                        width: 100%; 
+                        >a{
+                            cursor: pointer;
+                            display: inline-block;
+                            width: 100%;
+                            text-decoration: none;
+                            >figure{
+                                width: 100%;
+                                @include flex(){flex-direction: column};
+                                >p{
+                                    @include flex();
+                                    width: 100%; height: 225px;
+                                    background-color: white;
+                                    margin-bottom: 15px;
+                                    overflow: hidden;
+                                    >img{
+                                        width: 100%; height: 100%; 
+                                        object-fit: cover;
+                                        transition: .3s;
+                                    }
+                                }
+
+                                >figcaption{
+                                    @include font(1.5rem, inherit, $subColor2);
+                                }//figcaption
+
+                            }//figure
+
+                            &:hover{
+                                img{
+                                     transform: scale(1.2, 1.2);
+                                } 
+                            }
+                        }//li>a
+                    }//li
+                }//ul
+
+                >div.pagination{
+                    display: inline-block;
+                    margin-top: 36px;
+                    @include font(1.5rem, inherit, $subColor2);
+                    >span{
+
+                    }
+                    >span.prePage{
+
+                    }
+                    >span.Allpage{
+
+                    }
+                }//div.pagination
+
+            }//div.slide
+
+
+        }//article.otherRooms
+
+    }//section.roomDetail_sec2
+
+}//main
+
+footer{
+     
+}
