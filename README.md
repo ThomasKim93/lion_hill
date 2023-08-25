@@ -1,3 +1,0 @@
-# lion_hill_c
-ssss
-연습.....
