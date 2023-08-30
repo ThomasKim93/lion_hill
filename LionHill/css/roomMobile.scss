@@ -43,7 +43,7 @@ body{
 //------------------------------------------------------------
 @media (max-width: 950px) {
 section{
-    padding: 0 62px;
+    padding: 0 62px !important;
     >.content{
         // max-width: 1075px;
     }

@@ -48,7 +48,7 @@ body{
     
 
 section{
-    padding: 0 62px;
+    padding: 0 62px !important;
     >.content{
         // max-width: 1075px;
     }
@@ -100,7 +100,7 @@ main{
         
 
     >section.roomDetail_sec1{
-        padding-left: 62px; padding-right: 62px; 
+        padding-left: 62px !important; padding-right: 62px !important; 
 
         >h2{
             @include font(2rem);
@@ -254,7 +254,7 @@ main{
 }//@media (max-width: 750px)
 
     >section.roomDetail_sec2{
-        padding: 187px 50px 260px;
+        padding: 187px 50px 260px !important;
         >h2.Logo{
             
         }//h2.Logo

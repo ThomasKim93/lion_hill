@@ -46,7 +46,7 @@ body{
 }
 //------------------------------------------------------------
 section{
-    padding: 0 183px;
+    padding: 0 183px !important;
     transition: .2s padding;
     >.content{
        
@@ -77,18 +77,7 @@ main{
             position: absolute; top: 0; left: 0; z-index: 0;
             width: 100%; height: 100%;
             overflow: hidden;
-            background: url('../sub/img/about/Img_main.png') 0 bottom/ cover
-            /*
-            >.blackBg{
-                position: absolute; top: 0; left: 0; z-index: 1;
-                width: 100%; height: 100%;
-                background-color: rgba(0, 0, 0, 0.1);
-            }
-            >.imgBg{
-                position: absolute; top: 0; left: 0; z-index: 0;
-                height: 100%;
-            }
-            */
+            background: url('../sub/img/about/Img_main.JPG') 0 bottom/ cover
         }//.bg
 
         >.mainTxt{
@@ -99,17 +88,23 @@ main{
             display: inline-block;
             text-align: center;
             >h1{
-                @include English();
-                @include font(8rem, 400, white);
+                // @include English();
+                @include font(6.25rem, 400, white);
                 @include text();
                 @include spaceTxt();
                 margin: 0;
+                margin-bottom: 30px;
             }
             >p{
-                @include font(2rem, 400, white);
+                @include font(1.5625rem, 400, white);
                 letter-spacing: 3.2px;
                 margin: 0;
                 margin-top: 17px;
+                line-height: calc(100% + 5px);
+
+                >br.mb{
+                    display: none;
+                }
             }
         }
     }//div.main
@@ -197,8 +192,8 @@ main{
         // border: 1px solid red;
         background-color: white;
         height: auto;
-        padding-top: 150px;
-        padding-bottom: 150px;
+        padding-top: 150px !important;
+        padding-bottom: 150px !important;
         @include flex();
         >.content{
             width: 100%;
@@ -210,10 +205,9 @@ main{
             >div.swiper{
                 display: inline-block;
                 width: 100%;
-                >ul{
+                >div.accordionWrapper{
                     // outline: 1px solid red;
                     border-top: 2px solid $mainColor;
-                    >li{
                         >div.accordion{
                             @include text();
                             >h3.question{
@@ -250,17 +244,24 @@ main{
 
                             }
                         }//div.accordion
-                    }//li
-                }//ul
+                }//div
 
-                >.btn{
+                >.btnsWrapper{
                     @include flex();
                     @include font(1.5rem, 700, $mainColor);
                     margin-top: 40px;
+
+                    >div.left, div.right{
+                        font-family: 'Material Symbols Outlined';
+                        cursor: pointer;
+                    }
+
                     >.left{
+                        
                     }
 
                     >nav{
+                        margin: 0 20px;
                         >span{
 
                         }
@@ -268,7 +269,7 @@ main{
                     }
 
                     >.right{
-                        display: inline-block;
+
                     }
                 }//.btn
 
@@ -279,8 +280,8 @@ main{
     }//section.about_sec2 //about페이지_2.FAQ
 
     >section.about_sec3{
-        padding: 0px; //초기화 
-        padding-bottom: 110px;
+        padding: 0px !important; //초기화 
+        padding-bottom: 110px !important;
         background-color: $mainColor;
 
         @include flex(){flex-direction: column};
@@ -310,7 +311,7 @@ main{
 
         >div.map{
             width: 100%; height: 500px;
-            background-color: white;
+            background-color: #bbb;
         }
 
         >.content{
@@ -388,7 +389,7 @@ main{
 
     >section.about_sec4{
         background-color: white;
-        padding-top: 180px; padding-bottom: 244px; // 180px + 32px + 32px;
+        padding-top: 180px !important; padding-bottom: 244px !important; // 180px + 32px + 32px;
         @include flex(center, flex-start);
 
         >ul.content{
@@ -588,3 +589,11 @@ main{
 footer{
      
 }
+
+
+
+
+
+
+
+

@@ -23,7 +23,7 @@ document.getElementById('loginButton').addEventListener('click', function () {
                     phoneNumber: `${user.phoneNumber}`
                 };
                 sessionStorage.setItem(`user`,JSON.stringify(userInfoSession));
-                window.location.href = '../main/main.html';
+                window.location.href = '../index.html';
                 break;
             }
         }
@@ -54,7 +54,7 @@ if (alreadyLogin || kakaoKeys.length > 0) {
         kakaoKeys.forEach(key => {
             localStorage.removeItem(key);
         });
-        window.location.href = '../main/main.html';
+        window.location.href = '../index.html';
     });
 
     loginBtnChangeM.addEventListener('click', function(e) {
@@ -62,7 +62,7 @@ if (alreadyLogin || kakaoKeys.length > 0) {
         kakaoKeys.forEach(key => {
             localStorage.removeItem(key);
         });
-        window.location.href = '../main/main.html';
+        window.location.href = '../index.html';
     });
 }
 
@@ -136,7 +136,7 @@ function kakaoLogin() {
         url: '/v2/user/me',
         success: function (response) {
             console.log(response)
-            window.location.href = '../main/main.html';
+            window.location.href = '../index.html';
         },
         fail: function (error) {
             console.log(error)

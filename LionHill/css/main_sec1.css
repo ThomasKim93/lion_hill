@@ -154,6 +154,7 @@
 .swiper-pagination {
   bottom: 20.25rem !important;
   color: #23402a !important;
+  display:none;
 }
 
 .swiper-slide {
@@ -306,4 +307,15 @@
   }
 
   
+}
+
+
+
+
+
+
+
+div.txt_wrap p, div.txt_wrap strong{
+  word-break: keep-all;
+  word-wrap: break-word;
 }

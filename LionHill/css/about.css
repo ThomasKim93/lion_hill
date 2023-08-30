@@ -12,15 +12,8 @@ body {
 }
 
 section {
-  padding: 0 183px;
+  padding: 0 183px !important;
   transition: 0.2s padding;
-}
-.content{
-  margin: 0 183px;
-}
-
-main{
-  
 }
 main > .main {
   position: relative;
@@ -48,7 +41,7 @@ main > .main > .bg {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: url("../sub/img/about/Img_main.png") 0 bottom/cover;
+  background: url("../sub/img/about/Img_main.JPG") 0 bottom/cover;
 }
 main > .main > .mainTxt {
   position: absolute;
@@ -58,22 +51,26 @@ main > .main > .mainTxt {
   text-align: center;
 }
 main > .main > .mainTxt > h1 {
-  font-family: "Montserrat", "Times New Roman", Times, serif;
-  font-size: 8rem;
+  font-size: 6.25rem;
   font-weight: 400;
   color: white;
   word-break: keep-all;
   word-wrap: break-word;
   letter-spacing: 200%;
   margin: 0;
+  margin-bottom: 30px;
 }
 main > .main > .mainTxt > p {
-  font-size: 2rem;
+  font-size: 1.5625rem;
   font-weight: 400;
   color: white;
   letter-spacing: 3.2px;
   margin: 0;
   margin-top: 17px;
+  line-height: calc(100% + 5px);
+}
+main > .main > .mainTxt > p > br.mb {
+  display: none;
 }
 main > section.about_sec1 {
   background: linear-gradient(90deg, #112619 0%, #23402A 12.5%);
@@ -145,8 +142,8 @@ main > section.about_sec1 > .contentTbM {
 main > section.about_sec2 {
   background-color: white;
   height: auto;
-  padding-top: 150px;
-  padding-bottom: 150px;
+  padding-top: 150px !important;
+  padding-bottom: 150px !important;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -164,14 +161,14 @@ main > section.about_sec2 > .content > div.swiper {
   display: inline-block;
   width: 100%;
 }
-main > section.about_sec2 > .content > div.swiper > ul {
+main > section.about_sec2 > .content > div.swiper > div.accordionWrapper {
   border-top: 2px solid #23402A;
 }
-main > section.about_sec2 > .content > div.swiper > ul > li > div.accordion {
+main > section.about_sec2 > .content > div.swiper > div.accordionWrapper > div.accordion {
   word-break: keep-all;
   word-wrap: break-word;
 }
-main > section.about_sec2 > .content > div.swiper > ul > li > div.accordion > h3.question {
+main > section.about_sec2 > .content > div.swiper > div.accordionWrapper > div.accordion > h3.question {
   border-bottom: 1px solid #D3D9D4;
   font-size: 1.5rem;
   font-weight: bold;
@@ -182,19 +179,19 @@ main > section.about_sec2 > .content > div.swiper > ul > li > div.accordion > h3
   align-items: center;
   cursor: pointer;
 }
-main > section.about_sec2 > .content > div.swiper > ul > li > div.accordion > h3.question .ui-accordion-header-icon {
+main > section.about_sec2 > .content > div.swiper > div.accordionWrapper > div.accordion > h3.question .ui-accordion-header-icon {
   display: none;
 }
-main > section.about_sec2 > .content > div.swiper > ul > li > div.accordion > h3.question span.q::before {
+main > section.about_sec2 > .content > div.swiper > div.accordionWrapper > div.accordion > h3.question span.q::before {
   content: "Q";
   display: inline-block;
   margin-right: 35px;
 }
-main > section.about_sec2 > .content > div.swiper > ul > li > div.accordion > h3.question > span.arrow {
+main > section.about_sec2 > .content > div.swiper > div.accordionWrapper > div.accordion > h3.question > span.arrow {
   font-family: "Material Symbols Outlined";
   display: inline-block;
 }
-main > section.about_sec2 > .content > div.swiper > ul > li > div.accordion > div.answer, main > section.about_sec2 > .content > div.swiper > ul > li > div.accordion .ui-accordion-content {
+main > section.about_sec2 > .content > div.swiper > div.accordionWrapper > div.accordion > div.answer, main > section.about_sec2 > .content > div.swiper > div.accordionWrapper > div.accordion .ui-accordion-content {
   word-break: keep-all;
   word-wrap: break-word;
   white-space: pre-line;
@@ -202,7 +199,7 @@ main > section.about_sec2 > .content > div.swiper > ul > li > div.accordion > di
   background-color: #E9ECEA;
   line-height: 160%;
 }
-main > section.about_sec2 > .content > div.swiper > .btn {
+main > section.about_sec2 > .content > div.swiper > .btnsWrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -211,12 +208,16 @@ main > section.about_sec2 > .content > div.swiper > .btn {
   color: #23402A;
   margin-top: 40px;
 }
-main > section.about_sec2 > .content > div.swiper > .btn > .right {
-  display: inline-block;
+main > section.about_sec2 > .content > div.swiper > .btnsWrapper > div.left, main > section.about_sec2 > .content > div.swiper > .btnsWrapper div.right {
+  font-family: "Material Symbols Outlined";
+  cursor: pointer;
+}
+main > section.about_sec2 > .content > div.swiper > .btnsWrapper > nav {
+  margin: 0 20px;
 }
 main > section.about_sec3 {
-  padding: 0px;
-  padding-bottom: 110px;
+  padding: 0px !important;
+  padding-bottom: 110px !important;
   background-color: #23402A;
   display: flex;
   justify-content: center;
@@ -253,7 +254,7 @@ main > section.about_sec3 > div.about_sec2_header:after {
 main > section.about_sec3 > div.map {
   width: 100%;
   height: 500px;
-  background-color: white;
+  background-color: #bbb;
 }
 main > section.about_sec3 > .content {
   margin-top: 55px;
@@ -324,8 +325,8 @@ main > section.about_sec3 > .TMF_Mb {
 }
 main > section.about_sec4 {
   background-color: white;
-  padding-top: 180px;
-  padding-bottom: 244px;
+  padding-top: 180px !important;
+  padding-bottom: 244px !important;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -396,7 +397,7 @@ main > nav {
   top: 50%;
   left: 32px;
   transform: translateY(-50%);
-  z-index: 8;
+  z-index: 999;
   height: 150px;
 }
 main > nav > ul {

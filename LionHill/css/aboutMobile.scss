@@ -48,7 +48,7 @@ body{
 //------------------------------------------------------------
 @media (max-width: 950px) {
 section{
-    padding: 0 50px;
+    padding: 0 50px !important;
     >.content{
        
     }
@@ -78,17 +78,7 @@ main{
             position: absolute; top: 0; left: 0; z-index: 0;
             width: 100%; height: 100%;
             overflow: hidden;
-            /*
-            >.blackBg{
-                position: absolute; top: 0; left: 0; z-index: 1;
-                width: 100%; height: 100%;
-                background-color: rgba(0, 0, 0, 0.1);
-            }
-            >.imgBg{
-                position: absolute; top: 0; left: 0; z-index: 0;
-                height: 100%;
-            }
-            */
+
         }//.bg
 
         >.mainTxt{
@@ -98,24 +88,23 @@ main{
             color: white;
             display: inline-block;
             text-align: center;
+
             >h1{
-                @include English();
-                @include font(8rem, 400, white);
-                @include text();
-                @include spaceTxt();
-                margin: 0;
+                font-size: 3.75rem;
             }
             >p{
-                @include font(2rem, 400, white);
-                letter-spacing: 3.2px;
-                margin: 0;
-                margin-top: 17px;
+                font-size: 0.9375rem;
+                @media (max-width: 500px){
+                    >br.mb{
+                        display: inline-block;
+                    }
+                }//@media (max-width: 500px)
             }
         }
     }//div.main
 
     >section.about_sec1{
-        padding: 0 0;
+        padding: 0 0 !important;
         >.content{
 
         }
@@ -168,8 +157,7 @@ main{
 
             >div.swiper{
 
-                >ul{
-                    >li{
+                >div.accordionWrapper{
                         >div.accordion{
                             >h3.question{
                                 @include font(1rem, bold, $mainColor);
@@ -197,10 +185,9 @@ main{
 
                             }
                         }//div.accordion
-                    }//li
-                }//ul
+                }//div.accordionWrapper
 
-                >.btn{
+                >.btnsWrapper{
                     >.left{
                     }
 
@@ -224,7 +211,7 @@ main{
 
 @media (max-width: 750px) {
     >section.about_sec3{
-        padding: 0 0;
+        padding: 0 0 !important;
 
         >div.about_sec2_header{
 
@@ -303,7 +290,7 @@ main{
             @include flex(space-between){};
             @include font(0.6875rem, inherit, $mainColor);
             background-color: #D9D9D9;
-            padding: 0 50px;
+            padding: 0 50px !important;
             >p.right{
                 @include flex(){flex-direction: column};
                 >span{
@@ -362,6 +349,16 @@ main{
                     content: '';
                     outline: 3px solid $mainColor;
                     width: 100%; height: 50vw;
+
+
+
+
+
+
+
+                    top: 3px; left: 3px;
+                    width: calc(50vw - 6px);
+                    height: calc(50vw - 6px);
                 }
 
                 >ul.content_Mb{
@@ -380,7 +377,7 @@ main{
                                 text-align: center;
                                 >p{
                                     transition: .2s;
-                                    background: white center center / 70% 70% no-repeat scroll;
+                                    background: transparent center center / 70% 70% no-repeat scroll;
                                     // outline: 1px solid red;
                                     width: 50vw; height: 50vw;
                                 }
@@ -492,6 +489,8 @@ main{
                 width: calc(100% + 200px); height:  100px;
                 @include flex(space-between);
 
+
+                top: 28%;
                 >div{//버튼 전부
                     // outline: 1px solid red;
                     @include flex();
@@ -568,3 +567,4 @@ footer{
      
 }
 }//@media (max-width: 1440px) //태블릿
+

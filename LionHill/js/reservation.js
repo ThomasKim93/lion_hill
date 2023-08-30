@@ -1,20 +1,16 @@
 $(document).ready(function () {
-  $.get("../common/common.html", function (data) {
-    // 가져온 내용에서 header와 footer의 내용을 추출
-    var headerContent = $(data).filter("header").html();
-    var footerContent = $(data).filter("footer").html();
-    // 헤더와 푸터 내용 삽입
-    $("header").html(headerContent);
-    $("footer").html(footerContent);
-  });
+ 
 
   // 슬라이딩 컨텐츠 펼치기
   $(
     " .select_room,.select_date,.total_room_num,.total_adult_num,.total_children_num,.check_room figure img"
   ).click(function () {
     $(".box_wrap").empty();
+    $(".btn_room").removeClass("active");
+    $(".room").removeClass("active");
     $(".sliding_content").addClass("active");
     $(".sliding_dim").addClass("active");
+    $(".total_room_num p,total_adult_num p,total_children_num p").text();
   });
   $(".btn_close").click(function () {
     $(".sliding_content").removeClass("active");
@@ -35,6 +31,7 @@ $(document).ready(function () {
     "월 " +
     ("0" + currentDate.getDate()).slice(-2) +
     "일";
+
   // start_date와 end_date 요소에 날짜를 삽입합니다
   $(".start_date, .end_date").text(formattedDate);
 
@@ -133,8 +130,6 @@ $(document).ready(function () {
     var roomId = $(this).siblings(".room_name").text();
     var priceSpan = $(this).siblings("p").find("span");
 
-    console.log("클릭 발생!");
-
     var roomIndex = selectedRoomPrices.findIndex(
       (item) => item.roomId === roomId
     );
@@ -164,7 +159,7 @@ $(document).ready(function () {
 
     $(".grand_total span").text(formatCurrency(totalSum) + "원");
 
-    priceSpan.text(formatCurrency(price) + " 원");
+    priceSpan.text(formatCurrency(price) + "원");
   });
 
   $(".confirm_option").on("click", function () {
@@ -203,6 +198,7 @@ $(document).ready(function () {
     var jsonDataPath = "../db/reser_data.json";
     var boxWrap = $(".box_wrap");
     var activeButton = $(this).hasClass("active");
+    console.log(roomId);
     if (!activeButton) {
       $(this).addClass("active");
       $(".room").eq(index).addClass("active");
@@ -226,12 +222,12 @@ $(document).ready(function () {
                             <div class="quantity">
                             <div class="wrap_num">
                               <div class="adult_quantity">
-                                  <label for="quantityInput">어른</label>
-                                  <input type="text" id="quantityInput" value=" ${selectedRoom.adult}명" readonly>
+                                  <label for="adultInput">어른</label>
+                                  <input type="text" id="adultInput" value=" ${selectedRoom.adult}명" readonly>
                                   </div>
-                                  <div class="children_quantity">
-                                  <label for="quantityInput">아동</label>
-                                  <input type="text" id="quantityInput" value=" ${selectedRoom.children}명" readonly>
+                              <div class="children_quantity">
+                                  <label for="childrenInput">아동</label>
+                                  <input type="text" id="childrenInput" value=" ${selectedRoom.children}명" readonly>
                                   </div>
                             </div>
                         </div>
@@ -260,7 +256,7 @@ $(document).ready(function () {
     var totalRoomNum = $(".btn_room.active").length;
     var totalChildrenNum = 0;
     var totalAdultNum = 0;
-
+    var reserRoomInfo = [];
     $(".children_num input").each(function () {
       var childrenValue = $(this).val();
       var numericValue = parseNumberFromString(childrenValue);
@@ -277,13 +273,18 @@ $(document).ready(function () {
       var numberOnly = str.replace(/[^\d]/g, "");
       return parseInt(numberOnly, 10);
     }
+    var totalRoomNum = 0;
+    var totalAdultNum = 0;
+    var totalChildrenNum = 0;
+
+    var startDate = $(".start_date").text().trim();
+    var endDate = $(".end_date").text().trim();
 
     $(".select_num .room").each(function () {
       var roomName = $(this).find("p").text().trim();
-      var activeRoom = $(this); // 현재 반복 중인 객실을 선택
+      var activeRoom = $(this);
       var adultInput = activeRoom.find(".adult_num input").val();
       var childrenInput = activeRoom.find(".children_num input").val();
-
       var roomInfoContainer = $(
         ".room_info h2.room_name:contains('" + roomName + "')"
       ).closest(".room_info");
@@ -291,6 +292,21 @@ $(document).ready(function () {
       var roomChildrenInput = roomInfoContainer.find(
         ".children_quantity input"
       );
+
+      if (activeRoom.hasClass("active")) {
+        var adultInput = activeRoom.find(".adult_num input").val();
+        var childrenInput = activeRoom.find(".children_num input").val();
+        var roomInfo = {
+          roomName: roomName,
+          adultNumber: parseNumberFromString(adultInput),
+          childrenNumber: parseNumberFromString(childrenInput),
+          totalRoomNumber: parseNumberFromString(childrenInput),
+        };
+        reserRoomInfo.push(roomInfo);
+        totalRoomNum++;
+        totalAdultNum += roomInfo.adultNumber;
+        totalChildrenNum += roomInfo.childrenNumber;
+      }
 
       var adultNumber = parseNumberFromString(adultInput);
       var childrenNumber = parseNumberFromString(childrenInput);
@@ -303,9 +319,120 @@ $(document).ready(function () {
     $(".total_children_num p").text(totalChildrenNum);
     $(".total_adult_num p").text(totalAdultNum);
 
+    // 세션 스토리지에 값 저장
+    sessionStorage.setItem("totalRoomNum", totalRoomNum);
+    sessionStorage.setItem("totalChildrenNum", totalChildrenNum);
+    sessionStorage.setItem("totalAdultNum", totalAdultNum);
+    sessionStorage.setItem("startDate", startDate);
+    sessionStorage.setItem("endDate", endDate);
+    sessionStorage.setItem("reserRoomInfo", JSON.stringify(reserRoomInfo));
+
+    $(".total_room_num p").text(totalRoomNum);
+    $(".total_children_num p").text(totalChildrenNum);
+    $(".total_adult_num p").text(totalAdultNum);
+
     $(".sliding_content").removeClass("active");
     $(".sliding_dim").removeClass("active");
   });
+
+  if (window.location.pathname.endsWith("reservation.html")) {
+    var totalChildrenNum = sessionStorage.getItem("totalChildrenNum") || 0;
+    var startDate = sessionStorage.getItem("startDate") || formattedDate;
+    var endDate = sessionStorage.getItem("endDate") || formattedDate;
+    var totalAdultNum = sessionStorage.getItem("totalAdultNum") || 0;
+    var totalRoomNum = sessionStorage.getItem("totalRoomNum") || 0;
+
+    // 가져온 값들을 요소에 삽입
+    $(".total_children_num p").text(totalChildrenNum);
+    $(".start_date").text(startDate);
+    $(".end_date").text(endDate);
+    $(".total_adult_num p").text(totalAdultNum);
+    $(".total_room_num p").text(totalRoomNum);
+
+    var reserRoomInfo = JSON.parse(sessionStorage.getItem("reserRoomInfo"));
+
+    if (reserRoomInfo) {
+      var jsonDataPath = "../db/reser_data.json";
+      var boxWrap = $(".box_wrap");
+
+      $(".box_wrap").empty();
+
+      for (var i = 0; i < reserRoomInfo.length; i++) {
+        (function (roomInfo) {
+          var roomInfo = reserRoomInfo[i];
+          var roomName = roomInfo.roomName;
+          var adultNumber = roomInfo.adultNumber;
+          console.log(adultNumber);
+          $.getJSON(jsonDataPath, function (data) {
+            var selectedRoom = data.find((room) => room.room_name === roomName);
+            if (selectedRoom) {
+              var roomHtml = `
+              <div class="room_info">
+              <div class="left_box">
+                  <figure><img src="${selectedRoom.image}" alt="${selectedRoom.room_name}">
+                  <figcaption class="mo_only">${selectedRoom.room_name}</figcaption></figure>
+                  <div class="text_box">
+                      <h2 class="room_name title2 pc_only">${selectedRoom.room_name}</h2>
+                      <p class="capability pc_only">${selectedRoom.capability}</p>
+                      <p class="size pc_only">${selectedRoom.size}</p>
+                  </div>
+              </div>
+              <div class="right_box">
+                  <div class="quantity">
+                  <div class="wrap_num">
+                    <div class="adult_quantity">
+                        <label for="adultInput">어른</label>
+                        <input type="text" id="adultInput" value=" ${roomInfo.adultNumber}명" readonly>
+                        </div>
+                    <div class="children_quantity">
+                        <label for="childrenInput">아동</label>
+                        <input type="text" id="childrenInput" value=" ${roomInfo.childrenNumber}명" readonly>
+                        </div>
+                  </div>
+              </div>
+              <div class="room_select">
+                  <button class="select">선택</button>
+                  <p><span>${selectedRoom.price}</span></p>
+              </div>
+          </div>
+                `;
+              boxWrap.append(roomHtml);
+            }
+          });
+        })(reserRoomInfo[i]);
+      }
+    }
+  }
+
+  var currentPageURL = window.location.href;
+
+  // 현재 페이지가 reservation.html인지 확인합니다.
+  if (currentPageURL.indexOf("reservation.html") !== -1) {
+    // 세션스토리지의 특정 키가 있는지 확인합니다.
+    var keys = [
+      "totalRoomNum",
+      "totalChildrenNum",
+      "totalAdultNum",
+      "startDate",
+      "endDate",
+      "reserRoomInfo",
+    ];
+    var keyExists = keys.some((key) => sessionStorage.getItem(key) !== null);
+
+    if (keyExists) {
+      // 페이지를 벗어나거나 새로고침 할 때
+      $(window).on("beforeunload", function () {
+        // 경고문 띄우기
+        var warningMessage = "정말로 페이지를 벗어나시겠습니까?";
+        return warningMessage;
+      });
+
+      $(window).on("unload", function () {
+        // 세션스토리지의 특정 키를 삭제
+        keys.forEach((key) => sessionStorage.removeItem(key));
+      });
+    }
+  }
 });
 
 let nowMonth = new Date(); // 현재 달을 페이지를 로드한 날의 달로 초기화
@@ -338,9 +465,11 @@ function buildCalendar() {
     $nowRow.append($nowColumn);
 
     if (nowDay.getDay() == 0) {
+      $nowColumn.addClass("sunday");
       $nowColumn.css("color", "#DC143C"); // 일요일인 경우 글자색 빨강으로
     }
     if (nowDay.getDay() == 6) {
+      $nowColumn.addClass("saturday");
       $nowColumn.css("color", "#0000CD"); // 토요일인 경우 글자색 파랑으로
       $nowRow = $tbody_Calendar.append("<tr></tr>"); // 새로운 행 추가
     }
@@ -412,42 +541,44 @@ function choiceDate(nowColumn) {
   const selectedMonth = nowMonth.getMonth() + 1;
   const selectedDate = parseInt($(nowColumn).text(), 10);
 
-  console.log(
-    `선택한 날짜: ${selectedYear}-${leftPad(selectedMonth)}-${leftPad(
-      selectedDate
-    )}`
+  const selectedDateString = new Date(
+    selectedYear,
+    selectedMonth - 1,
+    selectedDate
   );
-
-  const selectedDateString = `${selectedYear}-${leftPad(
-    selectedMonth
-  )}-${leftPad(selectedDate)}`;
 
   if (startDate === null) {
     startDate = selectedDateString;
-    $(".start_date").text(startDate);
+    $(".start_date").text(
+      `${selectedYear}년 ${selectedMonth}월 ${selectedDate}일`
+    );
     $(".end_date").empty(); // end_date 내용 초기화
   } else if (endDate === null) {
     endDate = selectedDateString;
-    $(".end_date").text(endDate);
+    $(".end_date").text(
+      `${selectedYear}년 ${selectedMonth}월 ${selectedDate}일`
+    );
 
     // 날짜 비교 후 교체
-    if (new Date(endDate) < new Date(startDate)) {
+    if (endDate < startDate) {
       [startDate, endDate] = [endDate, startDate]; // 날짜 교체
-      $(".start_date").text(startDate);
-      $(".end_date").text(endDate);
+      $(".start_date").text(
+        `${startDate.getFullYear()}년 ${
+          startDate.getMonth() + 1
+        }월 ${startDate.getDate()}일`
+      );
+      $(".end_date").text(
+        `${endDate.getFullYear()}년 ${
+          endDate.getMonth() + 1
+        }월 ${endDate.getDate()}일`
+      );
     }
 
-    // 선택한 첫 번째와 두 번째 날짜 사이의 .futureDay 요소의 배경 색상 변경
     $(".futureDay").each(function () {
       const dateStr = $(this).text();
-      const currentDate = new Date(
-        `${selectedYear}-${selectedMonth}-${dateStr}`
-      );
+      const currentDate = new Date(selectedYear, selectedMonth - 1, dateStr);
 
-      if (
-        currentDate >= new Date(startDate) &&
-        currentDate <= new Date(endDate)
-      ) {
+      if (currentDate >= startDate && currentDate <= endDate) {
         $(this).css("background-color", "#112619");
         $(this).css("color", "#eff299");
       }
@@ -460,19 +591,24 @@ function choiceDate(nowColumn) {
     $(".futureDay").removeClass("highlight");
     $(".start_date, .end_date").empty();
     startDate = selectedDateString;
-    $(".start_date").text(startDate);
+    $(".start_date").text(
+      `${selectedYear}년 ${selectedMonth}월 ${selectedDate}일`
+    );
 
-    // .futureDay 요소의 배경 색상 초기화
     $(".futureDay").css("background-color", "");
-    $(".futureDay").css("color", "");
+
+    $(".futureDay").each(function (e) {
+      if ($(this).hasClass("saturday")) {
+        // 현재 .futureDay 요소의 배경 색상 초기화
+        $(this).css("color", "#0000CD");
+      } else if ($(this).hasClass("sunday")) {
+        $(this).css("color", "#DC143C");
+      } else {
+        $(this).css("color", "#000000");
+      }
+    });
   }
 }
-
-
-
-
-
-
 
 
 //========결제버튼 클릭시 기존 회원정보에 예약정보 추가하기========
@@ -560,6 +696,9 @@ document.getElementById('payBtn').addEventListener('click', function () {
     localStorage.setItem('userInfos', nonMemberUpdatedData);
 
     alert('비회원으로 예약되었습니다. 예약 번호를 잘 보관해 주세요.');
+    
+    //비회원도 확인창에서 예약정보 볼수있게 세션에 값 보내기 
+    sessionStorage.setItem('nonMemberLHNum', yourLHNum);
     // 예약 확인창으로 보내기
     window.location.href = '../sub/checkReservation.html';
   }
@@ -587,8 +726,13 @@ document.getElementById('checkMove').addEventListener('click',function(){
   }
 })
 
-
-
+//비로그인 상태로 접속시 회원가입 유도하기
+window.addEventListener('load', function() {
+  const sessionData = sessionStorage.getItem('user');
+  if (!sessionData) {
+      alert('로그인 상태가 아닙니다. \n로그인을 하시면 예약 내역을 더 편리하게 확인하실 수 있습니다.');
+  }
+});
 
 
 

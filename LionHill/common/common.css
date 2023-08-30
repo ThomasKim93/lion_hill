@@ -429,7 +429,10 @@ footer .inner .foot_btm .copy address span{
 }
 
 @media (max-width: 480px){
-  
+  header .inner .inner2 img {
+    width: 155px;
+    height: 38px;
+  }
 
   .header_image_word > h2 {
     font-size: 45px;
@@ -439,6 +442,9 @@ footer .inner .foot_btm .copy address span{
   .header_image_word > p {
     font-size: 11px;
     padding-top: 10px;
+  }
+  .menu_show > a {
+    font-size: 24px;
   }
 
 
@@ -455,6 +461,37 @@ footer .inner .foot_btm .copy address span{
     margin: auto 20px;
   }
 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+button{
+  transition: .2s;
+}
+
+@media (max-width: 1440px) {
+  header#header div.inner2{
+      justify-content: space-between;
+      padding: 0 100px;
+    
+  }
+}
+
+@media (max-width: 950px) {
+  header#header div.inner2{
+    padding: 0 60px;
+  
+}
+  
 }
 
 

@@ -46,7 +46,7 @@ body{
 }
 //------------------------------------------------------------
 section{
-    padding: 0 183px;
+    padding: 0 183px !important;
     transition: .2s padding;
     
     >.content{
@@ -57,7 +57,7 @@ main{
     >.main{
         position: relative;
         width: 100%; height: 100vh;
-        // overflow: hidden;
+        overflow: hidden;
         
         >ul{
             width: 100%; height: 100%; z-index: 0;
@@ -138,9 +138,9 @@ main{
     }//div.main
 
     >section.roomDetail_sec1{
-        padding: 0 183px;
+        padding: 0 183px !important;
         @include flex(){flex-direction: column};
-        padding-top: 100px; padding-bottom: 138px;
+        padding-top: 100px !important; padding-bottom: 138px !important;
         // margin-top: 100px; margin-bottom: 138px;
         >h2{
             @include font(2.8125rem); // 45px
@@ -291,7 +291,7 @@ main{
 
     >section.roomDetail_sec2{
         position: relative; top: 0; left: 0;
-        padding: 187px 183px 260px;
+        padding: 187px 183px 260px !important;
         background-color: $mainColor;
         >h2.Logo{
             position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%);

@@ -48,7 +48,7 @@ body{
     
 
 section{
-    padding: 0 100px;
+    padding: 0 100px !important;
     >.content{
         // max-width: 1075px;
     }
@@ -97,7 +97,7 @@ main{
     }//div.main
 
     >section.roomDetail_sec1{
-        padding: 100px 100px 138px;
+        padding: 100px 100px 138px !important;
         >h2{
 
         }
@@ -188,7 +188,7 @@ main{
     }//section.roomDetail_sec1
 
     >section.roomDetail_sec2{
-        padding: 187px 100px 260px;
+        padding: 187px 100px 260px !important;
         >h2.Logo{
             width: 79px; height: 105px;
         }//h2.Logo

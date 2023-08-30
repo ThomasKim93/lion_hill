@@ -1,53 +1,118 @@
 //sec2 - 아코디언 ----- ----- ----- ----- -----
-$( function() {
-    $( ".accordion" ).accordion({
-       collapsible: true,
-       heightStyle: "content"
-    });
-});
+
 
 //sec2 - 페이지네이션 ----- ----- ----- ----- -----
+const elAcc = document.querySelector('.about_sec2 div.accordion');
 
-//sec3 - map ----- ----- ----- ----- -----
-// window.kakao.maps.load(() => {
-//     const container = document.querySelectorAll('.map')[0];
-//     const options = {
-//         center: new kakao.maps.LatLng(33.281601, 126.319233),
-//         level: 3
-//     };
-//     const map = new kakao.maps.Map(container, options); 
+let accTag = '';
+$.ajax({
+    url: "../db/question.json",
 
-//     var markerPosition  = new kakao.maps.LatLng(33.281601, 126.319233); 
+    success: function(data){
+        const elAcc = document.querySelector('.about_sec2 .swiper .accordionWrapper'),
+              elBtnsWrapper = document.querySelector('.about_sec2 .btnsWrapper'),
+              elLeftBtn = elBtnsWrapper.querySelector('.left'),
+              elRightBtn = elBtnsWrapper.querySelector('.right'),
+              elSpan_prePage = elBtnsWrapper.querySelector('nav span:nth-of-type(1)'), //현재페이지
+              elSpan_allPage = elBtnsWrapper.querySelector('nav span:nth-of-type(3)'); //전체페이지
 
-//     var marker = new kakao.maps.Marker({
-//         position: markerPosition
-//     });
-//     marker.setMap(map);
+        let prePage = 1, //현재페이지
+            allPage = Math.trunc((data.length-1)/7)+1, // 전체페이지
+            visibleData;
 
-//     // 지도 확대, 축소 컨트롤에서 확대 버튼을 누르면 호출되어 지도를 확대하는 함수입니다
-//     function zoomIn() {
-//         map.setLevel(map.getLevel() - 1);
-//     }
+        
+
+        elSpan_allPage.innerText = allPage; //전체페이지 반영
+
+        //페이지네이션 버튼 클릭했을 때 발동
+        let pageFun = (next="first") => {
+            if(next == "next"){//다음버튼을 누름
+                (prePage < allPage) ? prePage++ : '';
+            }else if(next == "prev"){//이전버튼을 누름
+                (prePage > 1) ? prePage-- : '';
+            }
+
+
+            // 화면에 보일 것만 내놓기
+            visibleData = data.filter((obj, k)=>{                        
+                return (Math.trunc(k/7)+1 == prePage ) ? true : false;
+            }); //현재 페이지에 내놓을 객체만 따로 빼서 배열로 만듦
     
-//     // 지도 확대, 축소 컨트롤에서 축소 버튼을 누르면 호출되어 지도를 확대하는 함수입니다
-//     function zoomOut() {
-//         map.setLevel(map.getLevel() + 1);
-//     }
+            // console.log('visibleData' , visibleData); //따로 모은 배열
 
-// });
+            let tag = '<div class="accordion" id="accordion">';
+            visibleData.forEach((QnA_obj)=>{
+                tag += `<h3 class="question"><span class="q">${QnA_obj.Q}</span> <span class="arrow">keyboard_arrow_down</span></h3>
+                <div class="answer">${QnA_obj.A}</div>`;
+            });
+            tag += '</div>'
+            elAcc.innerHTML = tag; 
+
+            elSpan_prePage.innerText = prePage; //현재페이지 반영
+
+            $( ".accordion" ).accordion({
+                active: false,
+                collapsible: true,
+                heightStyle: "content"
+             });
+        }//pageFun() 함수정의
+
+        pageFun();
+
+        elLeftBtn.onclick = () => {
+            pageFun("prev");
+        }//elLeftBtn.onclick
+        
+        elRightBtn.onclick = () => {
+            pageFun("next");
+        }//elRightBtn.onclick
+
+    }, //success
+
+
+    error: function(){
+        console.log('---ajax에 문제가 발생했습니다.---');
+    }
+});//ajax
 
 //sec4 - 모바일 스와이퍼 ----- ----- ----- ----- -----
-    const swiper = new Swiper(".SNSSwiper_Mb", {
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-    });
+const swiper = new Swiper(".SNSSwiper_Mb", {
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+});
+
 //nav 관련 것들 ----- ----- ----- ----- -----
+
+//초기화
+let elNav_reset = document.querySelector('nav.navigation'),
+    elAAll_reset = elNav_reset.querySelectorAll('li>a'), 
+    elSecAll_reset = document.querySelectorAll('section');
+
+let elSecAll_offsetTop_reset = [];
+elSecAll_reset.forEach(function(ele, key){
+    elSecAll_offsetTop_reset.push(ele.offsetTop); //ele.offsetTop //절대 위치(문서기준)
+});
+
+elAAll_reset.forEach(function(ele, k){
+    ele.onclick = (e) => {
+        e.preventDefault(); //a태그 이동 막기
+
+        window.scrollTo({
+            top: elSecAll_offsetTop_reset[k] ,
+            left: 0,
+            behavior: "smooth"
+        });//window.scrollTo
+    };//ele.onclick
+});//elAAll.forEach(function(ele, k)
+
+//스크롤 등록
 let Prekey = 0;
 window.onload = function(){  
     //scroll nav색 바꾸기
     window.addEventListener('scroll', function(){
+
         let elNav = document.querySelector('nav.navigation'),
             elAAll = elNav.querySelectorAll('li>a');     
         let elSecAll = document.querySelectorAll('section');
@@ -104,7 +169,6 @@ window.onload = function(){
         elAAll.forEach(function(ele, k){
             ele.onclick = (e) => {
                 e.preventDefault(); //a태그 이동 막기
-                console.log( elSecAll_offsetTop[k]);
 
                 window.scrollTo({
                     top: elSecAll_offsetTop[k] ,
@@ -113,7 +177,7 @@ window.onload = function(){
                 });//window.scrollTo
             };//ele.onclick
         });//elAAll.forEach(function(ele, k)
-          
+
     });//window.scroll
 
     

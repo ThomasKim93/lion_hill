@@ -44,7 +44,7 @@ body{
 }
 //------------------------------------------------------------
 section{
-    padding: 0 183px;
+    padding: 0 183px !important;
     transition: .2s padding;
 
     >.content{
@@ -97,11 +97,11 @@ main{
     }//div.main
 
     section.header_image{
-        padding: 0;
+        padding: 0 !important;
     }
 
     section.room_sec1{
-        padding-bottom: 100px;
+        padding-bottom: 100px !important;
         
         >nav.menu{
             // outline: 1px solid red;

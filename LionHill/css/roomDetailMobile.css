@@ -12,13 +12,13 @@ body {
 
 @media (max-width: 950px) {
   section {
-    padding: 0 62px;
+    padding: 0 62px !important;
   }
 }
 @media (max-width: 950px) and (max-width: 750px) {
   main > section.roomDetail_sec1 {
-    padding-left: 62px;
-    padding-right: 62px;
+    padding-left: 62px !important;
+    padding-right: 62px !important;
   }
   main > section.roomDetail_sec1 > h2 {
     font-size: 2rem;
@@ -127,6 +127,6 @@ body {
 }
 @media (max-width: 950px) {
   main > section.roomDetail_sec2 {
-    padding: 187px 50px 260px;
+    padding: 187px 50px 260px !important;
   }
 }/*# sourceMappingURL=roomDetailMobile.css.map */

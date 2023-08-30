@@ -1,3 +1,24 @@
+$(document).ready(function () {
+ /*  $.get("./common/common.html", function (data) {
+    // 가져온 내용에서 header와 footer의 내용을 추출
+    var headerContent = $(data).filter("header").html();
+    var footerContent = $(data).filter("footer").html();
+
+    // 이미지 소스 경로 변경
+    headerContent = headerContent.replace(
+      '"../common/img/wh_logo.PNG',
+      '"./common/img/wh_logo.PNG'
+    );
+    footerContent = footerContent.replace(
+      '"../common/img/wh_logo.PNG',
+      '"./common/img/wh_logo.PNG'
+    );
+
+    // 헤더와 푸터 내용 삽입
+    $("header").html(headerContent);
+    $("footer").html(footerContent);
+  }); */
+
 const elBtn = document.querySelector(".more_btn");
 const textBox = document.querySelector(".text_box");
 const imgBox = document.querySelector(".img_box");
@@ -32,5 +53,6 @@ acorImages.forEach((acorImg) => {
   acorImg.addEventListener("mouseout", function () {
     figDesc.classList.remove("on");
     acorImg.style.flex = "1";
+    });
   });
 });

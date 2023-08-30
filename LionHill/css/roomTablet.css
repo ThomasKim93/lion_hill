@@ -11,7 +11,7 @@ body {
 
 @media (max-width: 1440px) {
   section {
-    padding: 0 100px;
+    padding: 0 100px !important;
   }
   main > .main > .mainTxt > h1 {
     font-size: 8rem;

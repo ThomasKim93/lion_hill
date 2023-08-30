@@ -8,13 +8,11 @@
     <link rel="stylesheet" href="../css/reservation.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     
-    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script defer src="../js/common.js"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script defer src="../js/loginLoad.js"></script>
     
     <title>예약</title>
@@ -29,7 +27,7 @@
         <figure><img src="../sub/img/reservation/reser_header_image.jpg"></figure>
     </section>
 
-    <header></header>
+    <header id="header"></header>
     <main>
         <section class="reser_sec1">
             <div class="left_box">
@@ -43,7 +41,7 @@
             <div class="right_box">
                 <div class="check_reser">
                     <h2 class="title2">예약 정보 확인하기</h2>
-                    <a href="./checkCustomer.html">
+                    <a id="checkMove">
                         <figure><img src="./img/reservation/icon_search.jpg" alt="예약 정보 확인하기"></figure>
                     </a>
                 </div>
@@ -254,7 +252,7 @@
             </div>
             <div class="sum_more">
                 <p class="room_sum title2">객실 금액: <span>0</span></p>
-                <a href="./roomDetail.html">객실 더 보기</a>
+                <a href="./roomDetail.html" target='_blank'>객실 더 보기</a>
             </div>
         </section>
         <section class="reser_sec4">

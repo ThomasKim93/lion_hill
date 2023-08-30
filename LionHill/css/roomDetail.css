@@ -16,13 +16,14 @@ body {
 }
 
 section {
-  padding: 0 183px;
+  padding: 0 183px !important;
   transition: 0.2s padding;
 }
 main > .main {
   position: relative;
   width: 100%;
   height: 100vh;
+  overflow: hidden;
 }
 main > .main > ul {
   width: 100%;
@@ -113,13 +114,13 @@ main > .main > div.pagination > .swiper-pagination-bullet.swiper-pagination-bull
   opacity: 100%;
 }
 main > section.roomDetail_sec1 {
-  padding: 0 183px;
+  padding: 0 183px !important;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding-top: 100px;
-  padding-bottom: 138px;
+  padding-top: 100px !important;
+  padding-bottom: 138px !important;
 }
 main > section.roomDetail_sec1 > h2 {
   font-size: 2.8125rem;
@@ -278,7 +279,7 @@ main > section.roomDetail_sec2 {
   position: relative;
   top: 0;
   left: 0;
-  padding: 187px 183px 260px;
+  padding: 187px 183px 260px !important;
   background-color: #23402A;
 }
 main > section.roomDetail_sec2 > h2.Logo {
