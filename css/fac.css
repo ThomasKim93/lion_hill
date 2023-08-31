@@ -7,11 +7,9 @@
   font-style: normal;
 }
 main {
-  max-width: 1440px;
   margin: 0 auto;
   font-size: 1rem;
   font-family: "ChosunGu";
-  background-color: #23402a;
   color: #eff299;
 }
 main .title2 {
@@ -46,7 +44,10 @@ main .fac .fac_sec .text_box {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 30%;
+  background-color: #23402a;
+  height:100%;
+  width: 35%;
+  opacity:1;
   transition: 0.5s;
 }
 main .fac .fac_sec .text_box p {
@@ -114,7 +115,6 @@ main .fac .swiper-container .wrap_swiper_navi {
   right: 0;
   top: 50%;
   width: 100%;
-  max-width: 1440px;
   margin: 0 auto;
 }
 main .fac .swiper-container .wrap_swiper_navi .swiper-button-next,
@@ -126,7 +126,7 @@ main .fac .swiper-container .wrap_swiper_navi .swiper-button-prev {
   opacity: 1;
   margin-top: 0;
   font-weight: 500;
-  color: #23402a;
+  color: #eff299;
 }
 main .fac .swiper-container .wrap_swiper_navi .swiper-button-next {
   transform: rotateX(180deg);
@@ -138,4 +138,106 @@ main .fac .swiper-container .wrap_swiper_navi .swiper-button-prev {
 main .fac .active {
   display: block;
   transition: transform 0.5s;
+}
+/* /////////////////////////////////////////////// */
+
+@media all and (min-width: 481px) and (max-width: 1440px) {
+
+  main .fac .fac_sec {
+    display: flex;
+    justify-content: center;
+  }
+  
+  main .fac .fac_sec .img_box {
+    width: 100% !important;
+    height: 100%;
+    transition: 0.5s;
+  }
+
+  main .fac .fac_sec .text_box{
+  position:absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width:500px !important;
+  opacity:1;
+  transition: 0.5s;
+
+}
+  main .fac .fac_sec .text_box.deactive{
+    opacity: 0;
+  }
+  main .fac .fac_sec2 .text_box{
+    background-color: #eff299;
+    color:#23402a !important;
+  }
+  main .fac .fac_sec2 .text_box .more_btn{
+    border: 1.5px solid #23402a !important;
+  }
+  main .fac .fac_sec4 .text_box{
+    background-color: #eff299;
+    color:#23402a !important;
+  }
+  main .fac .fac_sec4 .text_box .more_btn{
+    border: 1.5px solid #23402a !important;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  main .fac .fac_sec {
+    display: flex;
+    justify-content: center;
+
+  }
+  
+  main .fac .fac_sec .img_box {
+    width: 100% !important;
+    height: 100%;
+    
+    transition: 0.5s;
+  }
+
+  main .fac .fac_sec .text_box{
+  position:absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width:100% !important;
+  opacity:70%;
+  transition: 0.5s;
+}
+  main .fac .fac_sec .text_box > p {
+    opacity:1;  
+  }
+   
+  .title2{
+    opacity:1; 
+  } 
+  .more_btn{
+    opacity:1; 
+  }
+
+
+  main .fac .fac_sec .text_box.deactive{
+    opacity: 0;
+  }
+  main .fac .fac_sec2 .text_box{
+    background-color: #eff299;
+    color:#23402a !important;
+    
+  }
+  main .fac .fac_sec2 .text_box .more_btn{
+    border: 1.5px solid #23402a !important;
+  }
+  main .fac .fac_sec4 .text_box{
+    background-color: #eff299;
+    color:#23402a !important;
+  }
+  main .fac .fac_sec4 .text_box .more_btn{
+    border: 1.5px solid #23402a !important;
+  }
 }
