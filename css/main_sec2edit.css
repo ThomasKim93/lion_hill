@@ -1,0 +1,456 @@
+@charset "UTF-8";
+@import url(../common/reset.css);
+@font-face {
+  font-family: "ChosunGu";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGu.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  font-family: "ChosunGu";
+}
+
+/*
+.sec2 {
+   max-width: 1440px; 
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  font-size: 1rem;
+  color: #eff299;
+   padding: 200px 0; 
+  background-color: #23402a;
+}
+*/
+/*
+.sec2::after {
+  content: "";
+  background-color: white;
+  background-size: 30% 150px;
+  height: 210px;
+  width: 35%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+*/
+/*
+.sec2::before {
+  content: "";
+  background-color: white;
+  height: 200px;
+  width: 30%;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+*/
+.text_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.text_box button {
+  text-decoration: none;
+}
+
+.title2 {
+  font-size: 1.5625rem;
+}
+
+.sec2 {
+  position: relative;
+  /* max-width: 1440px; */
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  font-size: 1rem;
+  color: #eff299;
+  padding: 200px 0;
+  background-color: #112619;
+}
+
+.sec2 .logo {
+  position: absolute;
+  left: 10%;
+  bottom: 50px;
+  z-index: 2;
+}
+
+.sec2::after {
+  content: "";
+  background-color: white;
+  background-size: 30% 150px;
+  height: 210px;
+  width: 30%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.sec2::before {
+  content: "";
+  background-color: white;
+  height: 210px;
+  width: 30%;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.img_box2 {
+  height: 100%;
+}
+
+.img_box {
+  width: 70%;
+  height: 800px;
+  transition: opacity 0.5s ease;
+  z-index: 2;
+}
+
+.img_box img {
+  width: 100%;
+  height: 100%;
+}
+
+.text_box {
+  font-family: "SUIT-Regular";
+  background-color: #23402a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 30%;
+  z-index: 2;
+}
+
+.text_box p {
+  margin-top: 13px;
+}
+
+.text_box .more_btn {
+  color: inherit;
+  font-family: inherit;
+  width: 127px;
+  height: 41px;
+  background-color: transparent;
+  border: 1px solid #eff299;
+  margin-top: 17px;
+  cursor: pointer;
+}
+
+.text_box .more_btn:hover {
+  background-color: #fff;
+  color: #000;
+  transition: all 0.5s;
+}
+
+.text_box.deactive {
+  display: none;
+}
+
+.img_box.deactive {
+  display: none;
+}
+
+.acor_wrap .img_container .img_wrap .acor_img figcaption .title2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.acor_wrap .img_container .img_wrap .acor_img figcaption .sec2_desc {
+  text-align: left;
+  font-size: 1rem;
+  line-height: 20px;
+  opacity: 0;
+}
+
+.acor_wrap .img_container .img_wrap .acor_img figcaption .sec2_desc.on {
+  opacity: 1;
+}
+
+.acor_wrap .btn_close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  z-index: 3;
+  display: none;
+}
+
+.acor_wrap .btn_close::after {
+  content: "×";
+  display: inline-block;
+  font-size: 2.1875rem;
+  color: #eff299;
+  cursor: pointer;
+}
+
+.deactive {
+  display: none;
+}
+
+.sec2 {
+  font-family: "ChosunGu";
+}
+.sec2 .acor_wrap {
+  z-index: 2;
+  width: 100%;
+  height: 800px;
+  position: relative;
+}
+.sec2 .acor_wrap .img_container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+.sec2 .acor_wrap .img_container .img_wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+.sec2 .acor_wrap .img_container .img_wrap li {
+  height: 645px;
+  padding: 135px 80px;
+  border-radius: 20px;
+  color: white;
+  flex-grow: 1;
+  transition: 1.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sec2 .acor_wrap .img_container .img_wrap li .title2 {
+  writing-mode: vertical-lr;
+  height: 100%;
+}
+.sec2 .acor_wrap .img_container .img_wrap li .gone {
+  text-align: left;
+  display: none;
+  writing-mode: sideways-lr;
+}
+.sec2 .acor_wrap .img_container .img_wrap li .gone .titleS {
+  font-size: 25px;
+  font-weight: 600;
+}
+.sec2 .acor_wrap .img_container .img_wrap li .gone .sec2_desc {
+  margin-top: 25px;
+}
+.sec2 .acor_wrap .img_container .img_wrap li:hover {
+  flex-grow: 10;
+}
+.sec2 .acor_wrap .img_container .img_wrap li:hover .title2 {
+  display: none;
+  transition: 1s;
+}
+.sec2 .acor_wrap .img_container .img_wrap li:hover .gone {
+  display: block;
+  transition: 1s;
+}
+.sec2 .acor_wrap .img_container .img_wrap .acor_img1 {
+  background-image: url("../main/img/main_sec2_img1.jpg");
+}
+.sec2 .acor_wrap .img_container .img_wrap .acor_img2 {
+  background-image: url("../main/img/main_sec2_img2.jpg");
+}
+.sec2 .acor_wrap .img_container .img_wrap .acor_img3 {
+  background-image: url("../main/img/main_sec2_img3.jpg");
+}
+.sec2 .acor_wrap .img_container .img_wrap .acor_img4 {
+  background-image: url("../main/img/main_sec2_img4.jpg");
+}
+.sec2 .acor_wrap .img_container .img_wrap .acor_img5 {
+  background-image: url("../main/img/main_sec2_img5.jpg");
+}
+
+.m_sec2 {
+  display: none;
+}
+/* 반응형 시작 //////////// */
+
+@media all and (max-width: 1440px) {
+  .sec2 {
+    display: none;
+    padding: 0;
+  }
+  .m_sec2 {
+    display: block;
+  }
+  .sec2::before {
+    display: none;
+  }
+  .sec2 .acor_wrap .img_container .img_wrap {
+    display: none;
+  }
+  .img_box {
+    width: 100%;
+  }
+  .img_box.deactive {
+    display: block;
+  }
+  .sec2::before {
+    display: none;
+  }
+
+  .sec2 .acor_wrap {
+    display: none;
+  }
+  .sec2::after {
+    display: none;
+  }
+  .text_box {
+    display: none;
+  }
+
+  .image-container {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  .changing-image {
+    object-fit: cover;
+    width: 100%;
+    height: 800px;
+
+    /*width: 784px;
+    height: 580px;
+    */
+  }
+  .m_sec2 {
+    height: 800px;
+  }
+  .m_sec2 .txt_wrap {
+    position: absolute;
+    top: 40%;
+    width: 360px;
+    /* margin: 0 auto; */
+    /* left: 25%; */
+    /* transform: translate(50%, -50%); */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .green-curtain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(35, 64, 42, 0.2);
+    pointer-events: none; /* Allow clicks to go through the curtain */
+  }
+
+  .changing-title {
+    color: #fff;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .changing-text {
+    /* position: absolute;
+    top: 45%; */
+    font-size: 16px;
+    color: #fff;
+    margin-top: 10px;
+    line-height: 1.3;
+    /* width: 360px;
+    margin: 0 auto;
+    left: 38%; */
+  }
+  .changing-btn {
+    width: 150px;
+    height: 50px;
+    margin-top: 30px;
+    border: 2px solid white;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+  }
+}
+
+@media all and (max-width: 1024px) {
+  .img_box {
+    height: 540px;
+  }
+  .sec2 .logo img {
+    height: 80px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+} /*# sourceMappingURL=main_sec2edit.css.map */
+
+@media all and (max-width: 768px) {
+  .changing-image {
+    height: 700px;
+  }
+}
+
+@media all and (max-width: 480px) {
+  .changing-image {
+    height: 620px;
+  }
+  .changing-title {
+    font-size: 22px;
+  }
+  .changing-text {
+    font-size: 14px;
+  }
+  .changing-btn {
+    width: 130px;
+    height: 40px;
+  }
+
+  .main_sec4_word_p1 {
+    font-size: 20px;
+  }
+  .main_sec4_word_p2 {
+    font-size: 14px;
+  }
+  .main_sec4_word_p3 {
+    font-size: 14px;
+  }
+
+  .main_sec1_top .main_sec1_uptitle figcaption {
+    font-size: 15px;
+  }
+}
+
+@media all and (max-width: 375px) {
+}
+
+
+/* 수정한 것 */
+.reser_sec2_cal .select_date{
+  white-space: nowrap !important;
+}
+button.select_room{
+  outline: 1px solid #eff299;
+  padding: 2px 0;
+  transition: .2s;
+  
+  &:hover{
+    background-color: #eff299 !important;
+    color: #112619 !important;
+  }
+}
+
+
+
+a.btn_search{
+  outline: 1px solid #eff299;
+  padding: 10px;
+  transition: .2s;
+  
+  &:hover{
+    background-color: #eff299 !important;
+    color: #112619 !important;
+  }
+}
